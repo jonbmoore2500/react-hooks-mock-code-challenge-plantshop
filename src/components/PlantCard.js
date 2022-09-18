@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 function PlantCard({plant}) {
-  const {id, name, image, price} = plant
+  const {name, image, price} = plant
   const [inStock, setInStock] = useState(true)
   
   function handleInStock() {
