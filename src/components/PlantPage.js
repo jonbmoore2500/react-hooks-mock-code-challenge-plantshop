@@ -12,10 +12,23 @@ function PlantPage() {
     .then(data => setPlants(data))
   }, [])
 
+  function onSubmitPlant(newPlantObj) {
+    fetch('http://localhost:6001/plants', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newPlantObj)
+    })
+    .then(r => r.json())
+    .then(newPlant => {
+      setPlants([...plants, newPlant])
+    })
+  }
 
   return (
     <main>
-      <NewPlantForm />
+      <NewPlantForm onSubmitPlant={onSubmitPlant}/>
       <Search />
       <PlantList plants={plants}/>
     </main>
